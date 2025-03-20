@@ -1,0 +1,32 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: productpage
+  description: Product Page Service
+  tags:
+    - java
+  links:
+    - url: https://devspaces.apps.cluster-zpqtb.zpqtb.sandbox2275.opentlc.com/?storageType=per-workspace#https://github.com/contract-first-idp-test/bookinfo-productpage-service
+      title: OpenShift Dev Spaces
+      icon: web
+    - url: https://hawtio-online-hawtio-operator.apps.cluster-zpqtb.zpqtb.sandbox2275.opentlc.com/online/discover
+      title: HawtIO
+      icon: web
+  annotations:
+    github.com/project-slug: contract-first-idp-test/bookinfo-productpage-service
+    backstage.io/kubernetes-id: productpage
+    backstage.io/kubernetes-label-selector: system=bookinfo
+    janus-idp.io/tekton : productpage-service
+spec:
+  type: service
+  lifecycle: production
+  owner: group:default/backstage-admins
+  system: system:default/bookinfo
+  
+  providesApis: 
+    - productpage
+  
+  
+  consumesApis:
+    - details
+  
