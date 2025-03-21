@@ -13,14 +13,11 @@ public class ApiRoute extends RouteBuilder {
         restConfiguration().bindingMode(RestBindingMode.json)
                 .bindingPackageScan("com.redhat.demo.bookinfo.productpage");
         
+        rest().openApi().specification("productpage-api.json").missingOperation("mock");
         
-        rest().openApi().specification("productpage-api.json").missingOperation("ignore");
-        
-
-        
-        from("direct:sampleOperationId")
+        from("direct:getProduct")
                 .removeHeaders("*")
-                .to("rest-openapi:details-api.json#getProductDetails?host={{openapi.client.details.host}}");
+                .to("rest-openapi:details-api.json#getProduct?host={{openapi.client.details.host}}");
         
     }
 }
